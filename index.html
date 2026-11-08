@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bestellen · Pluimveebedrijf Salomons B.V.</title>
+<meta name="description" content="Bestel eieren en pulptrays bij Pluimveebedrijf Salomons B.V. in Dronten.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta name="theme-color" content="#072740">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Salomons">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Archivo:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Pluimveebedrijf Salomons, bestelportaal">
+      <img src="img/logo-wit.png" alt="Salomons Pluimveebedrijven" width="89" height="38">
+      <span class="brand-sub">Bestelportaal</span>
+    </a>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <span class="who" id="nav-who"></span>
+      <a aria-current="page" href="index.html">Bestellen</a>
+      <a data-admin hidden href="scherm.html">Orderscherm</a>
+      <a data-admin hidden href="beheer.html">Beheer <span class="badge" id="new-badge" hidden>0</span></a>
+      <button type="button" id="nav-logout" hidden>Uitloggen</button>
+    </nav>
+  </div>
+</header>
+<div class="demo-strip"><div class="wrap"><span><b>Demo</b> · bestellingen blijven in uw eigen browser, er wordt niets echt verstuurd.</span><button type="button" id="demo-reset">Demo opnieuw beginnen</button></div></div>
+
+<div id="loading" class="wrap small" style="padding:30px 0">Even geduld…</div>
+
+<!-- Inloggen / account aanvragen -->
+<section id="view-auth" class="hero" hidden>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <svg class="hero-roof" viewBox="0 0 360 120" aria-hidden="true">
+        <defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#b8cc0a"/><stop offset=".5" stop-color="#2fae6a"/><stop offset="1" stop-color="#29a8d6"/></linearGradient></defs>
+        <path d="M8 116V58Q8 50 16 47L172 8Q180 6 188 8L344 47Q352 50 352 58V116" fill="none" stroke="url(#rg)" stroke-width="7" stroke-linecap="round" pathLength="1"/>
+        <g class="egg"><ellipse cx="180" cy="80" rx="20" ry="26" fill="#fff"/><ellipse cx="173" cy="70" rx="5" ry="8" fill="#fff" opacity=".0"/></g>
+      </svg>
+      <h1><span class="ln"><span>Vers van de stal</span></span><span class="ln"><span>in Dronten.</span></span></h1>
+      <p class="lede">Bestel eieren en pulptrays bij Pluimveebedrijf Salomons B.V. Log in met uw account, of vraag een account aan.</p>
+      <div class="hero-facts">
+        <div><b>Scharrel</b>en vrije uitloop</div>
+        <div><b>KAT</b>gecertificeerd</div>
+        <div><b>Live</b>status per bestelling</div>
+      </div>
+    </div>
+    <div class="auth card">
+      <h2>Bestelportaal</h2>
+      <p class="small">Voor vaste afnemers van Salomons.</p>
+      <div class="seg-tabs" role="tablist" id="seg" data-tab="login">
+        <span class="thumb" aria-hidden="true"></span>
+        <button type="button" role="tab" id="t-login" aria-selected="true">Inloggen</button>
+        <button type="button" role="tab" id="t-register" aria-selected="false">Account aanvragen</button>
+      </div>
+
+      <form id="f-login" novalidate>
+        <label>E-mailadres<input id="l-email" type="email" autocomplete="email" required></label>
+        <label>Wachtwoord<input id="l-pass" type="password" autocomplete="current-password" required></label>
+        <div id="l-msg" class="notice err" role="alert" hidden></div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Inloggen</button>
+          <button type="button" class="link-btn" id="to-forgot">Wachtwoord vergeten?</button>
+        </div>
+      </form>
+
+      <form id="f-register" novalidate hidden>
+        <div class="fields">
+          <label class="full">Bedrijfsnaam<input id="r-company" autocomplete="organization" required></label>
+          <label>Contactpersoon<input id="r-contact" autocomplete="name" required></label>
+          <label>Telefoonnummer <span class="opt">(optioneel)</span><input id="r-phone" type="tel" autocomplete="tel"></label>
+          <label class="full">E-mailadres<input id="r-email" type="email" autocomplete="email" required></label>
+          <label class="full">Wachtwoord <span class="opt">(minstens 8 tekens)</span><input id="r-pass" type="password" autocomplete="new-password" minlength="8" required></label>
+        </div>
+        <div id="r-msg" class="notice err" role="alert" hidden></div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Account aanvragen</button>
+          <span class="small">Wij keuren nieuwe accounts zo snel mogelijk goed.</span>
+        </div>
+      </form>
+
+      <form id="f-forgot" novalidate hidden>
+        <p style="margin:0">Vul uw e-mailadres in. U krijgt een e-mail met een link om een nieuw wachtwoord te kiezen.</p>
+        <label>E-mailadres<input id="fg-email" type="email" autocomplete="email" required></label>
+        <div id="fg-msg" class="notice err" role="alert" hidden></div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Stuur de link</button>
+          <button type="button" class="link-btn" id="back-login">Terug naar inloggen</button>
+        </div>
+      </form>
+
+      <div class="demo-logins">
+        <p class="small">Demo: kijk mee zonder wachtwoord</p>
+        <button type="button" class="btn btn-sm" id="demo-klant">Als klant</button>
+        <button type="button" class="btn btn-sm btn-lime" id="demo-admin">Als beheerder</button>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-roofline" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V40L720 0L1440 40V60Z"/></svg>
+</section>
+
+<main class="page" id="main">
+  <div class="wrap">
+    <!-- Uitleg: bestelportaal op het beginscherm van de telefoon zetten -->
+    <section id="install" class="card" aria-labelledby="install-title" style="margin-bottom:22px;animation:dropin .6s var(--spring) both" hidden>
+      <div class="row1"><h2 id="install-title">Zet het bestelportaal op uw telefoon</h2>
+        <button type="button" class="icon-btn" id="install-close" aria-label="Uitleg sluiten" title="Sluiten">×</button></div>
+      <p class="small" style="margin:6px 0 14px">Dan staat het als een app op uw beginscherm en bestelt u voortaan met één tik.</p>
+      <div id="install-android">
+        <h3>Op een Android-telefoon</h3>
+        <div id="install-direct" hidden><button type="button" class="btn btn-primary" id="install-btn">Op mijn telefoon zetten</button></div>
+        <ol id="install-android-steps" style="margin:8px 0 0 20px">
+          <li>Tik in Chrome rechtsboven op de <b>drie puntjes</b>.</li>
+          <li>Kies <b>Toevoegen aan startscherm</b> of <b>App installeren</b>.</li>
+          <li>Tik op <b>Toevoegen</b> of <b>Installeren</b>.</li>
+        </ol>
+      </div>
+      <div id="install-ios">
+        <h3>Op een iPhone of iPad</h3>
+        <ol style="margin:8px 0 0 20px">
+          <li>Tik onderin Safari op de <b>deelknop</b>: het vierkantje met het pijltje omhoog. Staat de knop er niet, tik dan eerst op de drie puntjes.</li>
+          <li>Scrol omlaag en kies <b>Zet op beginscherm</b>.</li>
+          <li>Tik rechtsboven op <b>Voeg toe</b>.</li>
+        </ol>
+        <p class="small">Ziet u deze keuze niet? Open deze pagina dan in Safari.</p>
+      </div>
+      <div id="install-desktop" class="notice info">U bekijkt deze pagina op een computer. Open <b id="install-url"></b> op uw telefoon om het bestelportaal daar op het beginscherm te zetten.</div>
+      <p class="small" style="margin-top:10px">Open daarna het nieuwe icoon en log één keer in. Daarna blijft u normaal gesproken ingelogd.</p>
+    </section>
+
+    <!-- Nieuw wachtwoord na de link uit de e-mail -->
+    <section id="view-recover" hidden>
+      <h1>Nieuw wachtwoord</h1>
+      <form id="f-recover" class="auth card" novalidate style="max-width:460px;margin-top:18px;display:grid;gap:14px">
+        <label>Nieuw wachtwoord <span class="opt">(minstens 8 tekens)</span><input id="rc-pass" type="password" autocomplete="new-password" minlength="8" required></label>
+        <div id="rc-msg" class="notice err" role="alert" hidden></div>
+        <div><button type="submit" class="btn btn-primary">Wachtwoord opslaan</button></div>
+      </form>
+    </section>
+
+    <!-- Account nog niet goedgekeurd -->
+    <section id="view-pending" hidden>
+      <div class="card confirm" style="max-width:640px;margin:20px auto">
+        <svg viewBox="0 0 120 90" width="120" aria-hidden="true" style="overflow:visible"><path d="M6 86V44L60 8l54 36v42" fill="none" stroke="url(#rg2)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.2s var(--ease-out) forwards"/><defs><linearGradient id="rg2" x1="0" x2="1"><stop offset="0" stop-color="#b8cc0a"/><stop offset=".5" stop-color="#00673d"/><stop offset="1" stop-color="#0082ad"/></linearGradient></defs><ellipse cx="60" cy="60" rx="13" ry="17" fill="#f2e3c4" style="transform-origin:60px 77px;animation:nudge 2.4s ease-in-out infinite"/></svg>
+        <h1>Uw account wordt gecontroleerd</h1>
+        <p class="lede" style="color:var(--muted)">Bedankt voor uw aanmelding. Wij keuren uw account zo snel mogelijk goed. Daarna kunt u hier bestellen. Kijk later nog eens, of neem contact met ons op.</p>
+        <p class="small">Demo: log in als beheerder om dit account goed te keuren. Deze pagina springt dan vanzelf door.</p>
+      </div>
+    </section>
+
+    <!-- Bestellen -->
+    <section id="view-order" hidden>
+      <div class="page-head">
+        <div>
+          <p class="small" id="hello"></p>
+          <h1>Eieren bestellen</h1>
+          <p class="lede">Kies de producten en de gewenste leverdatum. Zodra uw bestelling is klaargemaakt, ziet u hier een melding en krijgt u bericht per e-mail of WhatsApp.</p>
+        </div>
+      </div>
+      <div id="ready-banner" class="ready" role="status" hidden></div>
+
+      <div class="order-grid">
+        <div>
+          <form id="order-form" class="order-form" novalidate>
+            <fieldset class="card">
+              <div class="legend"><span class="n">1</span>Producten</div>
+              <div class="line-head" aria-hidden="true"><span>Product</span><span>Verpakking</span><span style="text-align:right">Aantal</span><span></span></div>
+              <div id="lines" class="lines"></div>
+              <div class="submit-row"><button type="button" class="btn btn-sm" id="add-line">+ Regel toevoegen</button></div>
+              <div class="total-strip" id="total-strip">
+                <svg class="egg-ico" viewBox="0 0 26 32" aria-hidden="true"><ellipse cx="13" cy="18" rx="11" ry="13" fill="#f2e3c4" stroke="#d9b67a" stroke-width="1.5"/></svg>
+                <span class="small" style="flex:1" id="total-label">Nog geen aantallen</span>
+                <b id="total-eggs">0</b><span class="small" id="total-unit"></span>
+              </div>
+            </fieldset>
+
+            <fieldset class="card">
+              <div class="legend"><span class="n">2</span>Levering</div>
+              <div class="days" id="days" role="group" aria-label="Snel een leverdatum kiezen"></div>
+              <div class="fields">
+                <label>Gewenste leverdatum<input id="o-date" type="date" required></label>
+                <div></div>
+                <label class="full">Opmerkingen <span class="opt">(optioneel)</span><textarea id="o-notes" placeholder="Bijvoorbeeld: losadres, tijdvenster, eiermaat of stempel"></textarea></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="card">
+              <div class="legend"><span class="n">3</span>Uw gegevens</div>
+              <div class="fields">
+                <label>Bedrijfsnaam<input id="o-company" disabled></label>
+                <label>E-mailadres<input id="o-email" disabled></label>
+                <label>Contactpersoon<input id="o-contact" autocomplete="name" required></label>
+                <label>Telefoonnummer <span class="opt">(06-nummer voor WhatsApp)</span><input id="o-phone" type="tel" autocomplete="tel" placeholder="06 12345678"></label>
+                <label class="full">Melding als uw bestelling klaar is
+                  <select id="o-notify">
+                    <option value="email">Per e-mail</option>
+                    <option value="whatsapp">Per WhatsApp</option>
+                    <option value="beide">Per e-mail en WhatsApp</option>
+                  </select>
+                </label>
+                <label class="full">Afleveradres <span class="opt">(als het anders is dan normaal)</span><input id="o-address" autocomplete="street-address"></label>
+              </div>
+              <div id="o-msg" class="notice err" role="alert" hidden></div>
+              <div class="submit-row">
+                <button type="submit" class="btn btn-primary" id="o-submit">Bestelling plaatsen</button>
+                <span class="small">Prijzen en voorwaarden volgens onze afspraken.</span>
+              </div>
+            </fieldset>
+          </form>
+
+          <div id="confirm" class="card confirm" hidden>
+            <div id="confirm-check"></div>
+            <h2>Bedankt, uw bestelling is ontvangen</h2>
+            <p style="margin:0">Pluimveebedrijf Salomons B.V. heeft uw bestelling ontvangen onder bestelnummer <span class="num" id="confirm-num"></span>. U ziet de status rechts bij <b>Uw bestellingen</b>.</p>
+            <div id="confirm-summary" class="small"></div>
+            <div><button type="button" class="btn" id="new-order">Nieuwe bestelling</button></div>
+          </div>
+        </div>
+
+        <aside class="aside">
+          <div class="card">
+            <h2>Uw bestellingen</h2>
+            <ul class="mine" id="mine"></ul>
+            <p class="small" id="mine-empty" style="margin:10px 0 0">Hier ziet u uw bestellingen met hun status.</p>
+          </div>
+          <div class="card contact-card">
+            <h2 style="color:#fff;margin-bottom:8px">Vragen?</h2>
+            <div style="font-size:.92rem">Pluimveebedrijf Salomons B.V.<br>Olsterweg 11, 8251 RK Dronten<br><a href="tel:+31321331948">0321 331 948</a></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo-wit.png" alt="Salomons" width="66" height="28">
+    <span>Pluimveebedrijf Salomons B.V. · Olsterweg 11, 8251 RK Dronten</span>
+    <span>Scharrel en vrije uitloop · KAT</span>
+    <button type="button" id="install-open" hidden>Zet op uw telefoon</button>
+  </div>
+</footer>
+
+<script src="js/opslaan.js"></script>
+<script src="js/app.js"></script>
+<script src="js/klant.js"></script>
+</body>
+</html>

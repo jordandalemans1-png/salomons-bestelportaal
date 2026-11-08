@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beheer · Pluimveebedrijf Salomons B.V.</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="img/icon-192.png">
+<meta name="theme-color" content="#072740">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Archivo:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Pluimveebedrijf Salomons, bestelportaal">
+      <img src="img/logo-wit.png" alt="Salomons Pluimveebedrijven" width="89" height="38">
+      <span class="brand-sub">Bestelportaal</span>
+    </a>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <span class="who" id="nav-who"></span>
+      <a href="index.html">Bestellen</a>
+      <a data-admin hidden href="scherm.html">Orderscherm</a>
+      <a aria-current="page" data-admin hidden href="beheer.html">Beheer <span class="badge" id="new-badge" hidden>0</span></a>
+      <button type="button" id="nav-logout" hidden>Uitloggen</button>
+    </nav>
+  </div>
+</header>
+<div class="demo-strip"><div class="wrap"><span><b>Demo</b> · wijzigingen hier ziet de klant direct op zijn bestelpagina.</span><button type="button" id="demo-reset">Demo opnieuw beginnen</button></div></div>
+
+<main class="page">
+  <div class="wrap">
+    <div id="gate"><p class="small">Even geduld…</p></div>
+
+    <div id="admin" hidden>
+      <div class="page-head">
+        <div>
+          <h1>Beheer</h1>
+          <p class="lede">Bestellingen verwerken, klanten goedkeuren en de productlijst bijhouden.</p>
+        </div>
+      </div>
+      <nav class="subtabs" aria-label="Onderdelen" id="subtabs">
+        <a href="#bestellingen" id="st-bestellingen">Bestellingen</a>
+        <a href="#klanten" id="st-klanten">Klanten <span class="badge" id="pending-badge" hidden>0</span></a>
+        <a href="#producten" id="st-producten">Producten</a>
+        <span class="bar" id="st-bar" aria-hidden="true"></span>
+      </nav>
+
+      <!-- Bestellingen -->
+      <section id="p-bestellingen">
+        <div class="counts" id="counts"></div>
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Zoek op klant of bestelnummer" aria-label="Zoeken">
+          <button type="button" class="btn" id="export-btn">Exporteren voor Excel</button>
+          <span class="small" id="orders-msg" role="status"></span>
+        </div>
+        <div class="slips" id="slips"></div>
+      </section>
+
+      <!-- Klanten -->
+      <section id="p-klanten" hidden>
+        <p class="lede" style="color:var(--muted)">Nieuwe klanten kunnen pas bestellen als u ze goedkeurt. U krijgt een e-mail als er iemand wacht.</p>
+        <div class="card" style="margin-top:16px">
+          <div class="table-wrap">
+            <table class="list">
+              <thead><tr><th>Bedrijf</th><th>Contact</th><th>Aangemeld</th><th>Status</th><th></th></tr></thead>
+              <tbody id="customers"></tbody>
+            </table>
+          </div>
+          <span class="small" id="cust-msg" role="status"></span>
+        </div>
+      </section>
+
+      <!-- Producten -->
+      <section id="p-producten" hidden>
+        <div class="card">
+          <h2>Producten en verpakkingen</h2>
+          <p class="small" style="margin-top:6px">Dit zien klanten in het bestelformulier, in deze volgorde. Zet de verpakkingen achter elkaar, gescheiden door komma's. Zet de inhoud in de naam als dat helpt, bijvoorbeeld "Losse doosjes scharrel (10 st.)". Zet de schakelaar uit om een product tijdelijk te verbergen.</p>
+          <div class="cat-head" aria-hidden="true"><span>Product</span><span>Verpakkingen</span><span style="text-align:center">Zichtbaar</span><span></span></div>
+          <div id="cat-rows" class="cat-rows"></div>
+          <div class="submit-row">
+            <button type="button" class="btn btn-sm" id="cat-add">+ Product toevoegen</button>
+            <button type="button" class="btn btn-primary" id="cat-save">Productlijst opslaan</button>
+            <span class="small" id="cat-msg" role="status"></span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo-wit.png" alt="Salomons" width="66" height="28">
+    <span>Pluimveebedrijf Salomons B.V. · Olsterweg 11, 8251 RK Dronten</span>
+  </div>
+</footer>
+<script src="js/app.js"></script>
+<script src="js/beheer.js"></script>
+</body>
+</html>

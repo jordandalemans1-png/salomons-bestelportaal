@@ -1,0 +1,15 @@
+{
+  "name": "Bestellen bij Pluimveebedrijf Salomons",
+  "short_name": "Salomons",
+  "description": "Bestelportaal van Pluimveebedrijf Salomons B.V.",
+  "lang": "nl",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#072740",
+  "theme_color": "#072740",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

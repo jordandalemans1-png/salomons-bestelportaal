@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orderscherm · Pluimveebedrijf Salomons B.V.</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="img/icon-192.png">
+<meta name="theme-color" content="#072740">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Archivo:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Pluimveebedrijf Salomons, bestelportaal">
+      <img src="img/logo-wit.png" alt="Salomons Pluimveebedrijven" width="89" height="38">
+      <span class="brand-sub">Bestelportaal</span>
+    </a>
+    <nav class="nav" aria-label="Hoofdmenu">
+      <span class="who" id="nav-who"></span>
+      <a href="index.html">Bestellen</a>
+      <a aria-current="page" data-admin hidden href="scherm.html">Orderscherm</a>
+      <a data-admin hidden href="beheer.html">Beheer <span class="badge" id="new-badge" hidden>0</span></a>
+      <button type="button" id="nav-logout" hidden>Uitloggen</button>
+    </nav>
+  </div>
+</header>
+<div class="demo-strip"><div class="wrap"><span><b>Demo</b> · open de klantpagina in een tweede tabblad en zie bestellingen hier live binnenkomen.</span><button type="button" id="demo-reset">Demo opnieuw beginnen</button></div></div>
+
+<main class="page">
+  <div class="wrap" style="width:min(1500px,100% - 32px)">
+    <div id="gate"><p class="small">Even geduld…</p></div>
+    <div id="screen" hidden>
+      <div class="board-head">
+        <div>
+          <h1>Orderscherm</h1>
+          <p class="clock" id="board-clock"></p>
+        </div>
+        <button type="button" class="btn" id="board-full">Volledig scherm</button>
+      </div>
+      <div class="board" id="board"></div>
+      <p class="small" id="board-msg" role="status"></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo-wit.png" alt="Salomons" width="66" height="28">
+    <span>Pluimveebedrijf Salomons B.V. · Olsterweg 11, 8251 RK Dronten</span>
+  </div>
+</footer>
+<script src="js/app.js"></script>
+<script src="js/scherm.js"></script>
+</body>
+</html>
